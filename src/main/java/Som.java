@@ -25,10 +25,10 @@ public class Som {
                 Task chosenTask = list.get(chosenInt - 1);
                 if (input.contains("un")) {
                     chosenTask.markAsUndone();
-                    System.out.println(line + "\n OK, I've marked this task as not done yet: \n[" + chosenTask.getStatusIcon() + "] " + chosenTask.toString());
+                    System.out.println(line + "\n OK, I've marked this task as not done yet: \n" + chosenTask.toString());
                 }  else {
                     chosenTask.markAsDone();
-                    System.out.println(line + "\n Nice! I've marked this task as done: \n[" + chosenTask.getStatusIcon() + "] " + chosenTask.toString());
+                    System.out.println(line + "\n Nice! I've marked this task as done: \n"+ chosenTask.toString());
                 }
 
             } else {

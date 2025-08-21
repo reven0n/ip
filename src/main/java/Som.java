@@ -48,7 +48,9 @@ public class Som {
                     list.add(t);
                     System.out.println(line + "\nGot it. I've added this task:");
                     System.out.println(t.toString());
-                    System.out.println("Now you have " + Task.total + " tasks in the list\n" + line);
+                    System.out.println("Now you have " + list.size() + " tasks in the list\n" + line);
+                } else if (input.startsWith("delete")) {
+                    handleDelete(input);
                 } else {
                     throw new SomException("I don't know what '" + input + "' means. Type 'help' to see what I can do.");
                 }
@@ -58,9 +60,30 @@ public class Som {
                 System.out.println(" " + e.getMessage());
                 System.out.println(line);
             } catch (Exception e) {
-                System.out.println(line);
                 System.out.println("Something went wrong :/ \nError: " + e.getMessage());
+                System.out.println(line);
             }
+        }
+    }
+
+    private void handleDelete(String input) throws SomException {
+        String[] parts = input.split(" ");
+        if (parts.length < 2) {
+            throw new SomException("Please enter a task number: ");
+        }
+        try {
+            System.out.println(line);
+            int taskNo = Integer.parseInt(parts[1]) - 1;
+            Task task = list.get(taskNo);
+            list.remove(taskNo);
+            System.out.println(" Noted. I've removed this task:");
+            System.out.println("  " + task.toString());
+            System.out.println(" Now you have " + list.size() + " tasks in the list");
+            System.out.println(line);
+        } catch (IndexOutOfBoundsException e) {
+            throw new SomException("No tasks found with that number.");
+        } catch (NumberFormatException e) {
+            throw new SomException("Task number must be a valid number.");
         }
     }
 
@@ -69,8 +92,8 @@ public class Som {
         if (list.isEmpty()) {
             System.out.println("Oops! Your task list is empty!");
         } else {
-            for (Task item : list) {
-                System.out.println(item.getID() + ". " + item.toString());
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println(i+1 + ". " + list.get(i).toString());
             }
         }
         System.out.println(line);
@@ -79,23 +102,23 @@ public class Som {
     private void handleMarking(String input) throws SomException {
         String[] noParts = input.split(" ", 2);
         if (noParts.length < 2 ) {
-            throw new SomException("Please specify a task number. Example: " + noParts[0] + "1");
+            throw new SomException("Please specify a task number. Example: mark 1 / unmark 1");
         }
         try {
             int index = Integer.parseInt(noParts[1]) - 1;
             Task task = list.get(index);
             if (input.startsWith("mark")) {
                 task.markAsDone();
-                System.out.println(line + "\n Nice! I've marked this task as done: \n"+ task.toString());
+                System.out.println(line + "\n Nice! I've marked this task as done:\n"+ task.toString());
             }  else if  (input.startsWith("unmark")) {
                 task.markAsUndone();
-                System.out.println(line + "\n OK, I've marked this task as not done yet: \n" + task.toString());
+                System.out.println(line + "\n OK, I've marked this task as not done yet:\n" + task.toString());
             }
             System.out.println(line);
         } catch (NumberFormatException e) {
-            throw new SomException("Please specify a task number. Example: " + noParts[0] + 1);
+            throw new SomException("Please specify a task number. Example: " + noParts[0] + " 1");
         } catch (IndexOutOfBoundsException e) {
-            throw new SomException("No tasks found with that number. ");
+            throw new SomException("No tasks found with that number.");
         }
     }
 

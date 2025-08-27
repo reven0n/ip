@@ -1,22 +1,34 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Represents an event task with start and end times.
  */
 public class Event extends Task{
-
-    private String from;
-    private String to;
+    protected LocalDateTime from;
+    protected LocalDateTime to;
+    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy h:mma");
 
     /**
      * Constructs a new Event task.
      *
      * @param description the task description
-     * @param from the start time
-     * @param to the end time
+     * @param strFrom the start time
+     * @param strTo the end time
      */
-    public Event(String description, String from, String to) {
+    public Event(String description, String strFrom, String strTo) throws SomException {
         super(description);
-        this.from = from;
-        this.to = to;
+        try {
+            this.from = LocalDateTime.parse(strFrom, INPUT_FORMAT);
+            this.to = LocalDateTime.parse(strTo, INPUT_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new SomException("Invalid date format! Use: yyyy-MM-dd HHmm (e.g., 2019-12-02 1800)");
+        }
+        if (from.isAfter(to)) {
+            throw new SomException("Start time cannot be after end time.");
+        }
     }
 
     /**
@@ -25,7 +37,7 @@ public class Event extends Task{
     @Override
     public String encode() {
         return("E | " + (this.isDone ? "1" : "0") + " | " + this.description
-                + " | " + this.from + " | " + this.to);
+                + " | " + this.from.format(INPUT_FORMAT) + " | " + this.to.format(INPUT_FORMAT));
     }
 
     /**
@@ -35,6 +47,7 @@ public class Event extends Task{
      */
     @Override
     public String toString(){
-        return " [E] " + super.toString() + " (from: " + from + " to: " + to + ")";
+        return " [E] " + super.toString() + " (from: "
+                + this.from.format(OUTPUT_FORMAT) + " to: " + this.to.format(OUTPUT_FORMAT) + ")";
     }
 }

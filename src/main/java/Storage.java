@@ -68,9 +68,9 @@ public class Storage {
      *
      * @param line the raw line from the file to parse
      * @return the parsed Task object
-     * @throws IllegalArgumentException if the line is malformed or contains invalid data
+     * @throws SomException if the line is malformed or contains invalid data
      */
-    private static Task parseTask(String line) throws IllegalArgumentException {
+    private static Task parseTask(String line) throws SomException {
         String[] parts = line.split(" \\| ", -1); // Keep trailing empty strings
         if (parts.length < 3) {
             throw new IllegalArgumentException("Too few parts");

@@ -18,6 +18,7 @@ public class Deadline extends Task {
     /**
      * Encodes a task into a line like: D | 1 | read book | 16 Aug
      */
+    @Override
     public String encode() {
         return("D | " + (this.isDone ? "1" : "0") + " | " + this.description + " | " + this.by);
     }

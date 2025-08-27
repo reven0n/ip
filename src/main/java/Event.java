@@ -22,6 +22,7 @@ public class Event extends Task{
     /**
      * Encodes a task into a line like: E | 1 | read book | 10am | 10pm
      */
+    @Override
     public String encode() {
         return("E | " + (this.isDone ? "1" : "0") + " | " + this.description
                 + " | " + this.from + " | " + this.to);

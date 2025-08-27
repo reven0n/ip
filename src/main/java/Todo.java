@@ -15,6 +15,7 @@ public class Todo extends Task {
     /**
      * Encodes a task into a line like: T | 1 | read book
      */
+    @Override
     public String encode() {
         return("T | " + (this.isDone ? "1" : "0") + " | " + this.description);
     }

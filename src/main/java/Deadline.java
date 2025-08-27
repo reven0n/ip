@@ -16,6 +16,13 @@ public class Deadline extends Task {
     }
 
     /**
+     * Encodes a task into a line like: D | 1 | read book | 16 Aug
+     */
+    public String encode() {
+        return("D | " + (this.isDone ? "1" : "0") + " | " + this.description + " | " + this.by);
+    }
+
+    /**
      * Returns string representation of the Deadline task.
      *
      * @return formatted task string

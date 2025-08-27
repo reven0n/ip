@@ -3,7 +3,7 @@
  * <p>
  * All tasks have a description, a completion status, and an ID.
  */
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -39,6 +39,8 @@ public class Task {
     public void markAsUndone() {
         isDone = false;
     }
+
+    public abstract String encode();
 
     /**
      * Returns string representation of the task.

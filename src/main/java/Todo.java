@@ -13,6 +13,13 @@ public class Todo extends Task {
     }
 
     /**
+     * Encodes a task into a line like: T | 1 | read book
+     */
+    public String encode() {
+        return("T | " + (this.isDone ? "1" : "0") + " | " + this.description);
+    }
+
+    /**
      * Returns string representation of the Todo task.
      *
      * @return formatted task string

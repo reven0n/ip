@@ -2,6 +2,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The main chatbot class that handles user interaction, task management, and persistence.
+ * This class reads user input, parses commands, manages a list of tasks.
+ *
+ * @author Darien Tan
+ */
 public class Som {
     private List<Task> list;
     private Scanner sc;
@@ -11,18 +17,27 @@ public class Som {
         new Som().run();
     }
 
+    /**
+     * Creates a new Som Chatbot.
+     */
     public Som() {
         this.list = new ArrayList<>();
         this.sc = new Scanner(System.in);
     }
 
+    /**
+     * Starts the main interaction loop of the chatbot.
+     * <p>
+     * Reads user input line by line, processes commands, and responds accordingly.
+     * The loop continues until the user types {@code bye}.
+     * All exceptions are caught and displayed in a user-friendly format.
+     */
     public void run() {
         //starting code
         System.out.println(line);
         System.out.println(" Hello! I'm Som\n What can I do for you?");
         System.out.println(" Type 'help' for a list of commands.");
         System.out.println(line);
-
         while (true) {
             try {
                 String input = sc.nextLine().trim();
@@ -66,6 +81,16 @@ public class Som {
         }
     }
 
+    /**
+     * Handles deleting a task from the list.
+     * <p>
+     * Parses the task number from input like {@code delete 1}.
+     * Validates input and removes the task. Throws {@link SomException}
+     * for invalid input or out-of-bounds indices.
+     *
+     * @param   input the full user input (e.g., "delete 1")
+     * @throws  SomException if input is invalid or task number is out of range
+     */
     private void handleDelete(String input) throws SomException {
         String[] parts = input.split(" ");
         if (parts.length < 2) {
@@ -87,6 +112,14 @@ public class Som {
         }
     }
 
+    /**
+     * Displays all tasks in the current list with their index and status.
+     * <p>
+     * If the list is empty, a message is shown indicating no tasks exist.
+     * Each task is printed with its ID (1-based) and string representation.
+     *
+     * @param list the list of tasks to display
+     */
     private void handleList(List<Task> list) {
         System.out.println(line);
         if (list.isEmpty()) {
@@ -99,6 +132,16 @@ public class Som {
         System.out.println(line);
     }
 
+    /**
+     * Handles marking a task as done or undone based on user input.
+     * <p>
+     * Parses the task number from input like {@code mark 1} or {@code unmark 2}.
+     * Validates input and updates the task status. Throws {@link SomException}
+     * for invalid input or out-of-bounds indices.
+     *
+     * @param   input the full user input (e.g., "mark 1")
+     * @throws  SomException if input is invalid or task number is out of range
+     */
     private void handleMarking(String input) throws SomException {
         String[] noParts = input.split(" ", 2);
         if (noParts.length < 2 ) {
@@ -125,8 +168,9 @@ public class Som {
     /**
      * This method returns a Task based on the user input
      *
-     * @param input The original user input
-     * @return      The correct Task type requested by the user
+     * @param   input the original user input
+     * @return the correct Task type requested by the user
+     * @throws  SomException if input is invalid or missing required parts
      */
     private Task getTask(String input) throws SomException {
         if (input == null || input.trim().isEmpty()) {
@@ -191,6 +235,12 @@ public class Som {
         }
     }
 
+
+    /**
+     * Displays a formatted list of all available commands to the user.
+     * <p>
+     * This method prints a help menu that explains the syntax and purpose
+     */
     private void showHelp() {
         System.out.println(line);
         System.out.println(" Available commands:");

@@ -27,16 +27,28 @@ public class TaskList {
         return this.tasks.get(index);
     }
 
-    public Task remove(int index) {
-        return this.tasks.remove(index);
+    public Task remove(int index) throws SomException {
+        try {
+            return this.tasks.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new SomException("No tasks found with that number.");
+        }
     }
 
     public void mark(int index) throws SomException {
-        tasks.get(index).markAsDone();
+        try {
+            tasks.get(index).markAsDone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new SomException("No tasks found with that number.");
+        }
     }
 
-    public void unmark(int index) {
-        tasks.get(index).markAsUndone();
+    public void unmark(int index) throws SomException {
+        try {
+            tasks.get(index).markAsUndone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new SomException("No tasks found with that number.");
+        }
     }
 
     public List<Task> getAllTasks() {

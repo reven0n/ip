@@ -10,30 +10,29 @@ public class Parser {
         return cmd.equals("todo") || cmd.equals("deadline") || cmd.equals("event");
     }
 
-    /**
-     * This method returns a Task based on the user input
-     *
-     * @param input the original user input
-     * @return the correct Task type requested by the user
-     * @throws SomException if input is invalid or missing required parts
-     */
-    public static Task parseTask(String input) throws SomException {
-        if (input == null || input.trim().isEmpty()) {
-            throw new SomException("Oops! Input cannot be empty.");
+    public static Command parse(String fullCommand) throws SomException {
+        String[] parts = fullCommand.trim().split(" ", 2);
+        if (parts[0].isEmpty()) {
+            throw new SomException("The command is empty!");
         }
 
-        String[] parts = input.split(" ", 2);
-        String task = parts[0].toLowerCase();
-        String fullDesc = parts.length > 1 ? parts[1].trim() : "";
+        String command = parts[0].toLowerCase();
+        String fullDesc = parts.length > 1 ? parts[1] : "";
 
-        switch (task) {
-        case "todo" -> { // case 1: todo
-            if (fullDesc.isEmpty()) {
-                throw new SomException("Oops! A todo needs a description. Try: todo <description>");
-            }
-            return new Todo(fullDesc);
+        switch (command) {
+        case "bye": {
+            return new ExitCommand();
         }
-        case "deadline" -> { // case 2: deadline
+        case "list": {
+            return new ListCommand();
+        }
+        case "help": {
+            return new HelpCommand();
+        }
+        case "todo": {
+            return new AddCommand(new Todo(fullDesc));
+        }
+        case "deadline": {
             int byIndex = fullDesc.indexOf("/by ");
             if (byIndex == -1) {
                 throw new SomException("Oops! A deadline task must include a task and '/by'. Example: deadline return book " +
@@ -47,9 +46,8 @@ public class Parser {
             if (deadline.isEmpty()) {
                 throw new SomException("Oops! The '/by' part cannot be empty. Please specify when it's due.");
             }
-            return new Deadline(desc, deadline);
-        }
-        case "event" -> { // case 3: event
+            return new AddCommand(new Deadline(desc, deadline));
+        } case "event": {
             int fromIndex = fullDesc.indexOf("/from ");
             int toIndex = fullDesc.indexOf("/to ");
             if (fromIndex == -1) {
@@ -74,33 +72,47 @@ public class Parser {
             if (to.isEmpty()) {
                 throw new SomException("Oops! The '/to' part cannot be empty. Please specify an end time.");
             }
-            return new Event(desc, from, to);
+            return new AddCommand(new Event(desc, from, to));
         }
-        default -> { // unknown task is given
-            throw new SomException("Unknown command: " + task);
+        case "mark": {
+            int index = parseIndex(fullCommand) - 1;
+            return new MarkCommand(index);
         }
+        case "unmark": {
+            int index = parseIndex(fullCommand) - 1;
+            return new UnmarkCommand(index);
         }
+        case "delete": {
+            int index = parseIndex(fullCommand) - 1;
+            return new DeleteCommand(index);
+        }
+        case "find": {
+            if (fullDesc.isEmpty()) {
+                throw new SomException("lease enter a valid date. Format: yyyy-MM-dd (e.g., 2025-03-11)");
+            }
+        }
+        default: {
+            throw new SomException("I don't know what '" + fullCommand + "' means. Type 'help' to see what I can do.");
+        }
+
+
+
+
+        }
+
     }
 
     public static int parseIndex(String input) throws SomException {
-        String[] noParts = input.split(" ", 2);
-        if (noParts.length < 2 ) {
-            throw new SomException("Please specify a task number. Example: " + noParts[0] + " 1");
+        String[] parts = input.split(" ", 2);
+        if (parts.length < 2 ) {
+            throw new SomException("Please specify a task number. Example: " + parts[0] + " 1");
         }
 
         try {
-            return Integer.parseInt(noParts[1]) - 1;
+            return Integer.parseInt(parts[1]);
         } catch (NumberFormatException e) {
             throw new SomException("Task number must be a valid number.");
         }
-    }
-
-    public static String parseDate(String input) throws SomException {
-        String[] parts = input.trim().split(" ", 2);
-        if (parts.length < 2) {
-            throw new SomException("Please specify a date. Format: yyyy-MM-dd");
-        }
-        return parts[1];
     }
 
 

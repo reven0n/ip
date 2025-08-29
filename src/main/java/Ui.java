@@ -60,9 +60,9 @@ public class Ui {
 
     public void showAdd(Task task, int total) {
         showLine();
-        System.out.println("Got it. I've added this task:");
+        System.out.println(" Got it. I've added this task:");
         System.out.println(task.toString());
-        System.out.println("Now you have " + total + " tasks in the list");
+        System.out.println(" Now you have " + total + " tasks in the list");
         showLine();
     }
 
@@ -77,7 +77,7 @@ public class Ui {
     public void showList(List<Task> tasks) {
         showLine();
         if (tasks.isEmpty()) {
-            System.out.println("Oops! Your task list is empty!");
+            System.out.println(" Oops! Your task list is empty!");
         } else {
             for (int i = 0; i < tasks.size(); i++) {
                 System.out.println(i+1 + ". " + tasks.get(i).toString());
@@ -96,6 +96,12 @@ public class Ui {
         showLine();
         System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
         showLine();
+    }
+
+    public void showLoadingError(String error) {
+        System.out.print("Error loading: ");
+        showError(error);
+        System.out.println("Starting with empty task list.");
     }
 
     /**

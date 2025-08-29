@@ -1,3 +1,9 @@
+package som;
+
+import som.task.Deadline;
+import som.task.Event;
+import som.task.Task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -89,5 +95,6 @@ public class TaskList {
         }
         return matches;
     }
+
 
 }

@@ -1,3 +1,19 @@
+package som;
+
+import som.command.AddCommand;
+import som.command.Command;
+import som.command.DeleteCommand;
+import som.command.ExitCommand;
+import som.command.FindCommand;
+import som.command.HelpCommand;
+import som.command.ListCommand;
+import som.command.MarkCommand;
+import som.command.UnmarkCommand;
+
+import som.task.Deadline;
+import som.task.Event;
+import som.task.Todo;
+
 public class Parser {
     /**
      * Checks if input is a task-adding command.
@@ -88,8 +104,9 @@ public class Parser {
         }
         case "find": {
             if (fullDesc.isEmpty()) {
-                throw new SomException("lease enter a valid date. Format: yyyy-MM-dd (e.g., 2025-03-11)");
+                throw new SomException("Please enter a valid date. Format: yyyy-MM-dd (e.g., 2025-03-11)");
             }
+            return new FindCommand(fullDesc);
         }
         default: {
             throw new SomException("I don't know what '" + fullCommand + "' means. Type 'help' to see what I can do.");

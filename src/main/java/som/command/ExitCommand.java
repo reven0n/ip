@@ -1,3 +1,9 @@
+package som.command;
+
+import som.SomException;
+import som.TaskList;
+import som.Ui;
+
 public class ExitCommand extends Command {
 
     @Override

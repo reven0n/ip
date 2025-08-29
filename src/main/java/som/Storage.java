@@ -1,3 +1,10 @@
+package som;
+
+import som.task.Deadline;
+import som.task.Event;
+import som.task.Task;
+import som.task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

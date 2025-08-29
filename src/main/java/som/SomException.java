@@ -1,3 +1,5 @@
+package som;
+
 /**
  * Custom exception class for user-facing errors in the Som chatbot.
  * <p>

@@ -1,3 +1,11 @@
+package som.command;
+
+import som.SomException;
+import som.Storage;
+import som.TaskList;
+import som.Ui;
+import som.task.Task;
+
 public class DeleteCommand extends Command {
 
     private int index;

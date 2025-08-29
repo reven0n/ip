@@ -1,3 +1,11 @@
+package som.command;
+
+import som.SomException;
+import som.Storage;
+import som.task.Task;
+import som.TaskList;
+import som.Ui;
+
 public class AddCommand extends Command {
     private Task task;
 

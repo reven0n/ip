@@ -1,8 +1,6 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a deadline task with a due date/time.
@@ -28,7 +26,18 @@ public class Deadline extends Task {
     }
 
     /**
+     * Returns the start date and time of the Deadline
+     *
+     * @return the LocalDateTime representing when the task is due
+     */
+    public LocalDateTime getby() {
+        return this.by;
+    }
+
+    /**
      * Encodes a task into a line like: D | 1 | read book | 16 Aug
+     *
+     * @return encodes a task into a line like: D | 1 | read book | 16 Aug
      */
     @Override
     public String encode() {
@@ -38,7 +47,7 @@ public class Deadline extends Task {
     /**
      * Returns string representation of the Deadline task.
      *
-     * @return formatted task string
+     * @return the formatted task string
      */
     @Override
     public String toString() {

@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +77,8 @@ public class Som {
                     System.out.println("Now you have " + list.size() + " tasks in the list\n" + LINE);
                 } else if (input.startsWith("delete")) {
                     handleDelete(input);
+                } else if (input.startsWith("find")) {
+                    handleFind(input);
                 } else {
                     throw new SomException("I don't know what '" + input + "' means. Type 'help' to see what I can do.");
                 }
@@ -171,6 +176,50 @@ public class Som {
             throw new SomException("Please specify a task number. Example: " + noParts[0] + " 1");
         } catch (IndexOutOfBoundsException e) {
             throw new SomException("No tasks found with that number.");
+        }
+    }
+
+    /**
+     * Finds and displays all tasks (deadlines and events) that occur on a specified date.
+     * <p>
+     * The user provides a date in the format {@code dd-MM-yyyy} (e.g., 11-03-2025).
+     * The method parses the input and searches through the task list for: Deadline and Event only.
+     * Matching tasks are printed in a formatted list. If no tasks are found,
+     * a friendly message is shown instead.
+     * <p>
+     * Example usage: find 11-03-2025
+     *
+     * @param input the full user command (must start with "find" followed by a date)
+     * @throws SomException if the date string is invalid or in wrong format
+     */
+    private void handleFind(String input) throws SomException {
+        String dateStr = input.substring(5).trim();
+        try {
+            LocalDate targetDate = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            List<Task> matches = new ArrayList<>();
+            for (Task t : list) {
+                if (t instanceof Deadline) {
+                    if (((Deadline) t).getby().toLocalDate().isEqual(targetDate)) {
+                        matches.add(t);
+                    }
+                } else if (t instanceof Event) {
+                    if (((Event) t).getFrom().toLocalDate().isEqual(targetDate)) {
+                        matches.add(t);
+                    }
+                }
+            }
+            System.out.println(LINE);
+            if (matches.isEmpty()) {
+                System.out.println(" No tasks found on " + targetDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+            } else {
+                System.out.println(" Tasks on " + targetDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ":");
+                for  (Task t : matches) {
+                    System.out.println(t.toString());
+                }
+            }
+            System.out.println(LINE);
+        } catch (DateTimeParseException e) {
+            throw new SomException("Please enter a valid date. Format: yyyy-MM-dd (e.g., 2025-03-11)");
         }
     }
 

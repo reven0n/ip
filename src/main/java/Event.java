@@ -32,7 +32,18 @@ public class Event extends Task{
     }
 
     /**
+     * Returns the start date and time of the Event
+     *
+     * @return the LocalDateTime representing when the event starts
+     */
+    public LocalDateTime getFrom() {
+        return this.from;
+    }
+
+    /**
      * Encodes a task into a line like: E | 1 | read book | 10am | 10pm
+     *
+     * @return Encodes a task into a line like: E | 1 | read book | 10am | 10pm
      */
     @Override
     public String encode() {

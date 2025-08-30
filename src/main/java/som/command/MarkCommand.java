@@ -5,9 +5,22 @@ import som.Storage;
 import som.TaskList;
 import som.Ui;
 
+/**
+ * Represents a command to mark a task as done.
+ *
+ * <p>When executed, this command updates the completion status of the specified task
+ * and displays a confirmation message.</p>
+ *
+ * @author Darien Tan
+ */
 public class MarkCommand extends Command {
     private int index;
 
+    /**
+     * Constructs a MarkCommand with the given task index.
+     *
+     * @param index the 0-based index of the task to mark
+     */
     public MarkCommand(int index) {
         this.index = index;
     }

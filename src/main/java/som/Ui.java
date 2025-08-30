@@ -8,13 +8,30 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.List;
 
+/**
+ * Handles all user interactions with the Som chatbot.
+ *
+ * This class is responsible for displaying messages, reading user input, and formatting output
+ * consistently using decorative lines. It encapsulates all console-based I/O, ensuring separation
+ * of concerns between user interaction and business logic.
+ *
+ * @author Darien Tan
+ */
 public class Ui {
     private Scanner sc;
 
+    /**
+     * Constructs a new Ui instance with a Scanner for reading user input.
+     */
     public Ui() {
         this.sc = new Scanner(System.in);
     }
 
+    /**
+     * Displays the welcome message when the app starts.
+     *
+     * Prints a greeting, a brief description of the app, and an instruction to type "help".
+     */
     public void showWelcome() {
         showLine();
         System.out.println(" Hello! I'm Som\n What can I do for you?");
@@ -22,25 +39,50 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Prints a decorative line separator to improve readability.
+     */
     public void showLine() {
         System.out.println("____________________________________________________________");
     }
 
+    /**
+     * Reads a command from the user input.
+     *
+     * @return the trimmed user input, or empty string if input is blank
+     */
     public String readCommand() {
         return sc.nextLine().trim();
     }
 
+    /**
+     * Displays an error message in a formatted way.
+     *
+     * @param exception the error message to display
+     */
     public void showError(String exception) {
         showLine();
         System.out.println(" " + exception);
         showLine();
     }
 
+    /**
+     * Displays the goodbye message when the user exits.
+     *
+     * Prints a farewell message and closes the Scanner to release system resources.
+     */
     public void showGoodbye() {
         System.out.println(" Bye. Hope to see you again soon!");
         sc.close();
     }
 
+    /**
+     * Displays all tasks occuring on a specific date.
+     *
+     * @param matches the list of matching tasks. If no tasks are found,
+     *                a friendly message is shown instead
+     * @param date the target date to display
+     */
     public void showTasksOnDate(List<Task> matches, LocalDate date) {
         showLine();
         String formatted = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
@@ -55,6 +97,12 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Confirms the deletion of a task.
+     *
+     * @param task the task that was deleted
+     * @param total the number of tasks remaining in the list
+     */
     public void showDelete(Task task, int total) {
         showLine();
         System.out.println(" Noted. I've removed this task:");
@@ -63,6 +111,12 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Confirms the addition of a new Task.
+     *
+     * @param task the task that was added
+     * @param total the total number of tasks in the list after addition
+     */
     public void showAdd(Task task, int total) {
         showLine();
         System.out.println(" Got it. I've added this task:");
@@ -91,27 +145,44 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Confirms that a task has been marked as done.
+     *
+     * @param task the task that was marked as done
+     */
     public void showMarked(Task task) {
         showLine();
         System.out.println( " Nice! I've marked this task as done:\n"+ task.toString());
         showLine();
     }
 
+    /**
+     * Confirms that a task has been marked as not done.
+     *
+     * @param task the task that was marked as not done
+     */
     public void showUnmarked(Task task) {
         showLine();
         System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
         showLine();
     }
 
+    /**
+     * Displays an error message when loading tasks fails.
+     *
+     * @param error the error message to display
+     */
     public void showLoadingError(String error) {
+        showLine();
         System.out.print("Error loading: ");
         showError(error);
         System.out.println("Starting with empty task list.");
+        showLine();
     }
 
     /**
      * Displays a formatted list of all available commands to the user.
-     * <p>
+     *
      * This method prints a help menu that explains the syntax and purpose
      */
     public void showHelp() {

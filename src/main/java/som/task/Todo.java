@@ -1,7 +1,12 @@
 package som.task;
 
 /**
- * * Represents a todo task with no time constraints.
+ * Represents a todo task with no time constraints.
+ *
+ * <p>A todo is the simplest type of task, containing only a description
+ * and completion status. It does not have a due date or time.</p>
+ *
+ * @author Darien Tan
  */
 public class Todo extends Task {
 
@@ -14,10 +19,12 @@ public class Todo extends Task {
         super(description);
     }
 
+
     /**
      * Encodes a task into a line like: T | 1 | read book
+     *
+     * @return the formatted representation of the task to be saved
      */
-    @Override
     public String encode() {
         return("T | " + (this.isDone ? "1" : "0") + " | " + this.description);
     }
@@ -28,7 +35,7 @@ public class Todo extends Task {
      * @return formatted task string
      */
     @Override
-    public String toString(){
+    public String toString() {
         return " [T] " + super.toString();
     }
 }

@@ -5,6 +5,8 @@ package som;
  * <p>
  * Used to wrap and report invalid inputs, file errors, and other
  * recoverable issues in a consistent way.
+ *
+ * @author Darien Tan
  */
 public class SomException extends Exception {
     /**

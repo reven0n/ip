@@ -8,6 +8,11 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents a deadline task with a due date/time.
+ *
+ * <p>A deadline task includes a description and a deadline. The deadline is stored as a object for
+ * accurate date-time comparison and formatting.</p>
+ *
+ * @author Darien Tan
  */
 public class Deadline extends Task {
     private LocalDateTime by;
@@ -41,7 +46,7 @@ public class Deadline extends Task {
     /**
      * Encodes a task into a line like: D | 1 | read book | 16 Aug
      *
-     * @return encodes a task into a line like: D | 1 | read book | 16 Aug
+     * @return the formatted representation of the task to be saved
      */
     @Override
     public String encode() {

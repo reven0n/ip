@@ -1,9 +1,14 @@
 package som.task;
 
 /**
- * Represents a generic bask.
- * <p>
- * All tasks have a description, a completion status, and an ID.
+ * Represents a generic Task in the task list.
+ *
+ * <p>This abstract class serves as the base for all specific task types, such as
+ * Todo, Deadline and Event. It contains common properties such as description
+ * and completion status. Subclasses must implement the toString() and encode()
+ * methods to define their string representation and format. </p>
+ *
+ * @author Darien Tan
  */
 public abstract class Task {
     protected String description;
@@ -12,7 +17,7 @@ public abstract class Task {
     /**
      * Constructs a new Task with the given description.
      *
-     * @param description the task description
+     * @param description the task description, must not be null
      */
     public Task(String description) {
         this.description = description;
@@ -22,26 +27,31 @@ public abstract class Task {
     /**
      * Returns the status icon: "X" if done, " " otherwise.
      *
-     * @return "X" or " "
+     * @return "X" if the task is done, " " if the task is not done
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
     /**
-     * Marks the task as done
+     * Marks the task as done.
      */
     public void markAsDone() {
         isDone = true;
     }
 
     /**
-     * Marks the task as not done
+     * Marks the task as not done.
      */
     public void markAsUndone() {
         isDone = false;
     }
 
+    /**
+     * Encodes a task the specified format for saving
+     *
+     * @return the formatted representation of the task to be saved
+     */
     public abstract String encode();
 
     /**

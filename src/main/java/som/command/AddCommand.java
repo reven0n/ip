@@ -6,9 +6,21 @@ import som.task.Task;
 import som.TaskList;
 import som.Ui;
 
+/**
+ * Represents a command to add a task to the task list.
+ *
+ * <p>When executed, this command adds the specified task and confirms the addition
+ * through the user interface. It also triggers an automatic save of the updated list.</p>
+ *
+ * @author Darien Tan
+ */
 public class AddCommand extends Command {
     private Task task;
 
+    /**
+     * Constructs an AddCommand with the given task.
+     * @param task the task to be added, must not be null
+     */
     public AddCommand(Task task) {
         this.task = task;
     }

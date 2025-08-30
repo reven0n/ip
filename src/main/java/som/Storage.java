@@ -17,13 +17,13 @@ import java.util.ArrayList;
 
 /**
  * Manages persistent storage of tasks to and from a file on disk.
- * <p>
- * This class handles saving the current task list to a file and loading it back
- * when the application starts.
- * <p>
- * The data file is stored at ./data/som.txt (relative to the project root).
+ *
+ * <p>This class handles saving the current task list to a file and loading it back
+ * when the application starts.</p>
+ *
+ * <p>The data file is stored at ./data/som.txt (relative to the project root).
  * Corrupted lines in the file are skipped with a warning message.
- * All file operations use OS-independent paths via {@link java.nio.file.Paths}.
+ * All file operations use OS-independent paths via java.nio.file.Paths. </p>
  *
  * @author Darien Tan
  */
@@ -31,12 +31,6 @@ public class Storage {
     private static final String APP_DIR = "data";
     private static final String FILE_NAME = "som.txt";
     private static final Path FILE_PATH = Paths.get(APP_DIR, FILE_NAME);
-
-    /**
-     * Constructs a Storage instance.
-     */
-    public Storage() {
-    }
 
     /**
      * Loads the list of tasks from the data file.

@@ -12,7 +12,7 @@ import som.Ui;
  * @author Darien Tan
  */
 public class FindCommand extends Command {
-    private String dateStr;
+    private String keyword;
 
     /**
      * Constructs a FindCommand with the given date.
@@ -20,16 +20,16 @@ public class FindCommand extends Command {
      * @param dateStr the date to search for; must not be null.
      */
     public FindCommand(String dateStr) {
-        this.dateStr = dateStr;
+        this.keyword = dateStr;
     }
 
-    public String getDateStr() {
-        return this.dateStr;
+    public String getKeyword() {
+        return this.keyword;
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui) throws SomException {
-        ui.showTasksOnDate(tasks.findTasks(dateStr), java.time.LocalDate.parse(dateStr));
+        ui.showFindResults(tasks.findTasks(keyword), keyword);
     }
 
     @Override

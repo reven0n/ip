@@ -2,9 +2,6 @@ package som;
 
 import som.task.Task;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import java.util.Scanner;
 import java.util.List;
 
@@ -78,17 +75,16 @@ public class Ui {
      *
      * @param matches the list of matching tasks. If no tasks are found,
      *                a friendly message is shown instead.
-     * @param date the target date to display.
+     * @param keyword the target date to display.
      */
-    public void showTasksOnDate(List<Task> matches, LocalDate date) {
+    public void showFindResults(List<Task> matches, String keyword) {
         showLine();
-        String formatted = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
         if (matches.isEmpty()) {
-            System.out.println(" No tasks found on " + formatted);
+            System.out.println(" No tasks found matching '" + keyword + "'");
         } else {
-            System.out.println(" Tasks on " + formatted + ":");
-            for (Task t : matches) {
-                System.out.println("  " + t.toString());
+            System.out.println(" Here are the matching tasks in your list:");
+            for (int i = 0; i < matches.size(); i++) {
+                System.out.println(" " + (i + 1) + "." + matches.get(i).toString());
             }
         }
         showLine();
@@ -189,6 +185,7 @@ public class Ui {
         System.out.println("  list                         – Show all tasks");
         System.out.println("  mark <index>                 – Mark task as done");
         System.out.println("  unmark <index>               – Mark task as not done");
+        System.out.println("  find <keyword>               – Find tasks containing the keyword");
         System.out.println("  help                         – Show this message");
         System.out.println("  bye                          – Exit");
         showLine();

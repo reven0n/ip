@@ -120,34 +120,23 @@ public class TaskList {
     }
 
     /**
-     * Finds and displays all tasks (deadlines and events) that occur on a specified date.
-     * <p>The user provides a date in the format {@code dd-MM-yyyy} (e.g., 11-03-2025).
-     * The method parses the input and searches through the task list for: Deadline and Event only.
+     * Finds and displays all tasks that occur with the specified keyword.
+     * <p>The user provides a keyword in the format {@code find book}.
+     * The method parses the input and searches through the task list the keyword.
      * Matching tasks are printed in a formatted list. If no tasks are found,
      * a friendly message is shown instead.</p>
-     * <p>Example usage: find 11-03-2025</p>
+     * <p>Example usage: find book</p>
      *
-     * @param input the full user command (must start with "find" followed by a date).
+     * @param keyword the item to be looked for.
      * @return a List consisting of all matching tasks with the specified date.
-     * @throws SomException if the date string is invalid or in wrong format.
      */
-    public List<Task> findTasks(String input) throws SomException {
+    public List<Task> findTasks(String keyword) {
         List<Task> matches = new ArrayList<>();
-        try {
-            LocalDate targetDate = LocalDate.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            for (Task t : tasks) {
-                if (t instanceof Deadline) {
-                    if (((Deadline) t).getby().toLocalDate().isEqual(targetDate)) {
-                        matches.add(t);
-                    }
-                } else if (t instanceof Event) {
-                    if (((Event) t).getFrom().toLocalDate().isEqual(targetDate)) {
-                        matches.add(t);
-                    }
-                }
+
+        for (Task t : tasks) {
+            if (t.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                matches.add(t);
             }
-        } catch (DateTimeParseException e) {
-            throw new SomException("Please enter a valid date. Format: yyyy-MM-dd (e.g., 2025-03-11)");
         }
         return matches;
     }

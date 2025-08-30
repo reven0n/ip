@@ -111,7 +111,7 @@ public class Parser {
         }
         case "find": {
             if (fullDesc.isEmpty()) {
-                throw new SomException("Please enter a valid date. Format: yyyy-MM-dd (e.g., 2025-03-11)");
+                throw new SomException("Please enter a keyword to search for.");
             }
             return new FindCommand(fullDesc);
         }

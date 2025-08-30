@@ -6,7 +6,6 @@ import som.Ui;
 
 /**
  * Represents a command to exit the application.
- *
  * <p>When executed, this command displays a goodbye message and terminates the app.</p>
  *
  * @author Darien Tan

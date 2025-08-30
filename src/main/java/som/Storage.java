@@ -17,13 +17,11 @@ import java.util.ArrayList;
 
 /**
  * Manages persistent storage of tasks to and from a file on disk.
- *
  * <p>This class handles saving the current task list to a file and loading it back
  * when the application starts.</p>
- *
  * <p>The data file is stored at ./data/som.txt (relative to the project root).
  * Corrupted lines in the file are skipped with a warning message.
- * All file operations use OS-independent paths via java.nio.file.Paths. </p>
+ * All file operations use OS-independent paths via java.nio.file.Paths.</p>
  *
  * @author Darien Tan
  */
@@ -34,13 +32,12 @@ public class Storage {
 
     /**
      * Loads the list of tasks from the data file.
-     * <p>
-     * If the file does not exist, throws SomException with "File not found!".
+     * <p>If the file does not exist, throws SomException with "File not found!".
      * Corrupted lines are skipped, and a warning is printed to the console.
-     * Requires all tasks to be of a fixed pre-determined input.
+     * Requires all tasks to be of a fixed pre-determined input.</p>
      *
-     * @return a list of loaded tasks
-     * @throws SomException if the file exists but cannot be found during scanning
+     * @return a list of loaded tasks.
+     * @throws SomException if the file exists but cannot be found during scanning.
      */
     public static List<Task> load() throws SomException {
         List<Task> tasks = new ArrayList<>();
@@ -64,12 +61,12 @@ public class Storage {
 
     /**
      * Parses a single line into a Task.
-     * Format: TYPE | DONE | ARGS...
-     * Example: T | 1 | read book
+     * <p>Format: TYPE | DONE | ARGS...
+     * Example: T | 1 | read book</p>
      *
-     * @param line the raw line from the file to parse
-     * @return the parsed Task object
-     * @throws SomException if the line is malformed or contains invalid data
+     * @param line the raw line from the file to parse.
+     * @return the parsed Task object.
+     * @throws SomException if the line is malformed or contains invalid data.
      */
     private static Task parseTask(String line) throws SomException {
         String[] parts = line.split(" \\| ", -1); // Keep trailing empty strings
@@ -121,12 +118,11 @@ public class Storage {
 
     /**
      * Saves the current list of tasks to the data file.
-     * <p>
-     * The file is overwritten completely to reflect the current state of the task list.
-     * This ensures that deleted or updated tasks are not left in stale form.
+     * <p>The file is overwritten completely to reflect the current state of the task list.
+     * This ensures that deleted or updated tasks are not left in stale form.</p>
      *
-     * @param tasks the list of tasks to save
-     * @throws SomException if an I/O error occurs during writing
+     * @param tasks the list of tasks to save.
+     * @throws SomException if an I/O error occurs during writing.
      */
     public static void save(List<Task> tasks) throws SomException {
         try {

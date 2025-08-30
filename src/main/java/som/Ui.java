@@ -10,10 +10,9 @@ import java.util.List;
 
 /**
  * Handles all user interactions with the Som chatbot.
- *
- * This class is responsible for displaying messages, reading user input, and formatting output
+ * <p>This class is responsible for displaying messages, reading user input, and formatting output
  * consistently using decorative lines. It encapsulates all console-based I/O, ensuring separation
- * of concerns between user interaction and business logic.
+ * of concerns between user interaction and business logic.</p>
  *
  * @author Darien Tan
  */
@@ -29,8 +28,7 @@ public class Ui {
 
     /**
      * Displays the welcome message when the app starts.
-     *
-     * Prints a greeting, a brief description of the app, and an instruction to type "help".
+     * <p>Prints a greeting, a brief description of the app, and an instruction to type "help".</p>
      */
     public void showWelcome() {
         showLine();
@@ -49,7 +47,7 @@ public class Ui {
     /**
      * Reads a command from the user input.
      *
-     * @return the trimmed user input, or empty string if input is blank
+     * @return the trimmed user input, or empty string if input is blank.
      */
     public String readCommand() {
         return sc.nextLine().trim();
@@ -58,7 +56,7 @@ public class Ui {
     /**
      * Displays an error message in a formatted way.
      *
-     * @param exception the error message to display
+     * @param exception the error message to display.
      */
     public void showError(String exception) {
         showLine();
@@ -68,8 +66,7 @@ public class Ui {
 
     /**
      * Displays the goodbye message when the user exits.
-     *
-     * Prints a farewell message and closes the Scanner to release system resources.
+     * <p>Prints a farewell message and closes the Scanner to release system resources.</p>
      */
     public void showGoodbye() {
         System.out.println(" Bye. Hope to see you again soon!");
@@ -77,11 +74,11 @@ public class Ui {
     }
 
     /**
-     * Displays all tasks occuring on a specific date.
+     * Displays all tasks occurring on a specific date.
      *
      * @param matches the list of matching tasks. If no tasks are found,
-     *                a friendly message is shown instead
-     * @param date the target date to display
+     *                a friendly message is shown instead.
+     * @param date the target date to display.
      */
     public void showTasksOnDate(List<Task> matches, LocalDate date) {
         showLine();
@@ -100,8 +97,8 @@ public class Ui {
     /**
      * Confirms the deletion of a task.
      *
-     * @param task the task that was deleted
-     * @param total the number of tasks remaining in the list
+     * @param task the task that was deleted.
+     * @param total the number of tasks remaining in the list.
      */
     public void showDelete(Task task, int total) {
         showLine();
@@ -114,8 +111,8 @@ public class Ui {
     /**
      * Confirms the addition of a new Task.
      *
-     * @param task the task that was added
-     * @param total the total number of tasks in the list after addition
+     * @param task the task that was added.
+     * @param total the total number of tasks in the list after addition.
      */
     public void showAdd(Task task, int total) {
         showLine();
@@ -127,11 +124,10 @@ public class Ui {
 
     /**
      * Displays all tasks in the current list with their index and status.
-     * <p>
-     * If the list is empty, a message is shown indicating no tasks exist.
-     * Each task is printed with its ID (1-based) and string representation.
+     * <p>If the list is empty, a message is shown indicating no tasks exist.
+     * Each task is printed with its ID (1-based) and string representation.</p>
      *
-     * @param tasks the list of tasks to display
+     * @param tasks the list of tasks to display.
      */
     public void showList(List<Task> tasks) {
         showLine();
@@ -148,7 +144,7 @@ public class Ui {
     /**
      * Confirms that a task has been marked as done.
      *
-     * @param task the task that was marked as done
+     * @param task the task that was marked as done.
      */
     public void showMarked(Task task) {
         showLine();
@@ -159,7 +155,7 @@ public class Ui {
     /**
      * Confirms that a task has been marked as not done.
      *
-     * @param task the task that was marked as not done
+     * @param task the task that was marked as not done.
      */
     public void showUnmarked(Task task) {
         showLine();
@@ -170,7 +166,7 @@ public class Ui {
     /**
      * Displays an error message when loading tasks fails.
      *
-     * @param error the error message to display
+     * @param error the error message to display.
      */
     public void showLoadingError(String error) {
         showLine();
@@ -182,8 +178,7 @@ public class Ui {
 
     /**
      * Displays a formatted list of all available commands to the user.
-     *
-     * This method prints a help menu that explains the syntax and purpose
+     * <p>This method prints a help menu that explains the syntax and purpose.</p>
      */
     public void showHelp() {
         showLine();

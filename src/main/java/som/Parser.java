@@ -16,7 +16,6 @@ import som.task.Todo;
 
 /**
  * Parses user input into executable Command objects.
- *
  * <p>This class analyzes the input string and returns the appropriate
  * Command subclass based on the command verb. It validates input format
  * and throws SomException for invalid commands.</p>
@@ -26,13 +25,12 @@ import som.task.Todo;
 public class Parser {
     /**
      * Parses a full user command into a Command object.
-     *
      * <p>Identifies the command type and returns the corresponding Command
      * instance. Throws SomException if the command is invalid.</p>
      *
-     * @param fullCommand the original user input, must not be null
-     * @return the parsed Command object ready for execution
-     * @throws SomException if the command is invalid, incomplete or malformed
+     * @param fullCommand the original user input, must not be null.
+     * @return the parsed Command object ready for execution.
+     * @throws SomException if the command is invalid, incomplete or malformed.
      */
     public static Command parse(String fullCommand) throws SomException {
         String[] parts = fullCommand.trim().split(" ", 2);
@@ -125,13 +123,12 @@ public class Parser {
 
     /**
      * Extracts the task index from a command string.
-     *
      * <p>Parses the number following the command verb and returns it. Throws
      * SomException if the index is missing or not a valid number. </p>
      *
-     * @param input the full user input containing the index
-     * @return the 1-based task index as an integer
-     * @throws SomException if index is missing or not a valid number
+     * @param input the full user input containing the index.
+     * @return the 1-based task index as an integer.
+     * @throws SomException if index is missing or not a valid number.
      */
     public static int parseIndex(String input) throws SomException {
         String[] parts = input.split(" ", 2);

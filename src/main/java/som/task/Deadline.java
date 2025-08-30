@@ -8,7 +8,6 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents a deadline task with a due date/time.
- *
  * <p>A deadline task includes a description and a deadline. The deadline is stored as a object for
  * accurate date-time comparison and formatting.</p>
  *
@@ -22,8 +21,8 @@ public class Deadline extends Task {
     /**
      * Constructs a new Deadline task.
      *
-     * @param description the task description
-     * @param strBy the deadline date/time
+     * @param description the task description.
+     * @param strBy the deadline date/time.
      */
     public Deadline(String description, String strBy) throws SomException {
         super(description);
@@ -35,18 +34,18 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the start date and time of the Deadline
+     * Returns the start date and time of the Deadline.
      *
-     * @return the LocalDateTime representing when the task is due
+     * @return the LocalDateTime representing when the task is due.
      */
     public LocalDateTime getby() {
         return this.by;
     }
 
     /**
-     * Encodes a task into a line like: D | 1 | read book | 16 Aug
+     * Encodes a task into a line like: D | 1 | read book | 16 Aug.
      *
-     * @return the formatted representation of the task to be saved
+     * @return the formatted representation of the task to be saved.
      */
     @Override
     public String encode() {
@@ -56,7 +55,7 @@ public class Deadline extends Task {
     /**
      * Returns string representation of the Deadline task.
      *
-     * @return the formatted task string
+     * @return the formatted task string.
      */
     @Override
     public String toString() {

@@ -8,7 +8,6 @@ import som.Ui;
 
 /**
  * Represents a command to add a task to the task list.
- *
  * <p>When executed, this command adds the specified task and confirms the addition
  * through the user interface. It also triggers an automatic save of the updated list.</p>
  *
@@ -19,7 +18,7 @@ public class AddCommand extends Command {
 
     /**
      * Constructs an AddCommand with the given task.
-     * @param task the task to be added, must not be null
+     * @param task the task to be added, must not be null.
      */
     public AddCommand(Task task) {
         this.task = task;

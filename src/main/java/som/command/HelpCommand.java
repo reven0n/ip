@@ -6,7 +6,6 @@ import som.Ui;
 
 /**
  * Represents a command to display the help message.
- *
  * <p>When executed, this command prints a formatted list of all available commands
  * and their usage.</p>
  *

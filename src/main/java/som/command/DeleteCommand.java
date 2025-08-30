@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
     /**
      * Constructs a DeleteCommand with the given task index.
      *
-     * @param index the 0-based index of the task to delete
+     * @param index the 0-based index of the task to delete.
      */
     public DeleteCommand(int index) {
         this.index = index;

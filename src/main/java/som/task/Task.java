@@ -19,6 +19,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     /**
      * Returns the status icon: "X" if done, " " otherwise.
      *

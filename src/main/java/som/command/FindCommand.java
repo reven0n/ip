@@ -5,19 +5,19 @@ import som.TaskList;
 import som.Ui;
 
 public class FindCommand extends Command {
-    private String dateStr;
+    private String keyword;
 
     public FindCommand(String dateStr) {
-        this.dateStr = dateStr;
+        this.keyword = dateStr;
     }
 
-    public String getDateStr() {
-        return this.dateStr;
+    public String getKeyword() {
+        return this.keyword;
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui) throws SomException {
-        ui.showTasksOnDate(tasks.findTasks(dateStr), java.time.LocalDate.parse(dateStr));
+        ui.showFindResults(tasks.findTasks(keyword), keyword);
     }
 
     @Override

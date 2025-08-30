@@ -76,6 +76,7 @@ public class Parser {
             if (fromIndex >= toIndex) {
                 throw new SomException("Oops! '/from' must come before '/to' in the input.");
             }
+
             String from = fullDesc.substring(fromIndex + 6, toIndex).trim(); // +6 to skip "/from "
             String to = fullDesc.substring(toIndex + 4).trim(); // +6 to skip "/to "
             String desc = fullDesc.substring(0, fromIndex).trim();
@@ -111,10 +112,6 @@ public class Parser {
         default: {
             throw new SomException("I don't know what '" + fullCommand + "' means. Type 'help' to see what I can do.");
         }
-
-
-
-
         }
 
     }

@@ -28,7 +28,7 @@ public class Todo extends Task {
      * @return formatted task string
      */
     @Override
-    public String toString(){
+    public String toString() {
         return " [T] " + super.toString();
     }
 }

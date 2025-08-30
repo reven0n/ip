@@ -161,7 +161,7 @@ public class ParserTest {
         // Assert
         assertInstanceOf(FindCommand.class, c);
         FindCommand cmd = (FindCommand) c;
-        assertEquals("2025-03-18", cmd.getDateStr());
+        assertEquals("2025-03-18", cmd.getKeyword());
     }
 
     @Test

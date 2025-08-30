@@ -8,6 +8,11 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents an event task with start and end times.
+ * <p>An event task includes a description, start time, and end time. Both times
+ * are stored as LocalDateTime objects for accurate comparison and formatting.
+ * The start time must be before the end time.</p>
+ *
+ * @author Darien Tan
  */
 public class Event extends Task{
     protected LocalDateTime from;
@@ -18,9 +23,9 @@ public class Event extends Task{
     /**
      * Constructs a new Event task.
      *
-     * @param description the task description
-     * @param strFrom the start time
-     * @param strTo the end time
+     * @param description the task description.
+     * @param strFrom the start time.
+     * @param strTo the end time, must be after start time.
      */
     public Event(String description, String strFrom, String strTo) throws SomException {
         super(description);
@@ -36,27 +41,27 @@ public class Event extends Task{
     }
 
     /**
-     * Returns the start date and time of the Event
+     * Returns the start date and time of the Event.
      *
-     * @return the LocalDateTime representing when the event starts
+     * @return the LocalDateTime representing when the event starts.
      */
     public LocalDateTime getFrom() {
         return this.from;
     }
 
     /**
-     * Returns the end date and time of the Event
+     * Returns the end date and time of the Event.
      *
-     * @return the LocalDateTime representing when the event ends
+     * @return the LocalDateTime representing when the event ends.
      */
     public LocalDateTime getTo() {
         return this.to;
     }
 
     /**
-     * Encodes a task into a line like: E | 1 | read book | 10am | 10pm
+     * Encodes a task into a line like: E | 1 | read book | 10am | 10pm.
      *
-     * @return Encodes a task into a line like: E | 1 | read book | 10am | 10pm
+     * @return the formatted representation of the task to be saved.
      */
     @Override
     public String encode() {
@@ -67,7 +72,7 @@ public class Event extends Task{
     /**
      * Returns string representation of the Event task.
      *
-     * @return formatted task string
+     * @return formatted task string.
      */
     @Override
     public String toString(){

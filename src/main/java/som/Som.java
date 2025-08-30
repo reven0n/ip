@@ -4,7 +4,7 @@ import som.command.Command;
 
 /**
  * The main chatbot class that handles user interaction, task management, and persistence.
- * This class reads user input, parses commands, manages a list of tasks.
+ * <p>This class reads user input, parses commands, manages a list of tasks.</p>
  *
  * @author Darien Tan
  */
@@ -17,7 +17,7 @@ public class Som {
     }
 
     /**
-     * Creates a new Som Chatbot.
+     * Creates a new Som Chatbot instance.
      */
     public Som() {
         this.ui = new Ui();
@@ -33,10 +33,9 @@ public class Som {
 
     /**
      * Starts the main interaction loop of the chatbot.
-     * <p>
-     * Reads user input line by line, processes commands, and responds accordingly.
+     * <p>Reads user input line by line, processes commands, and responds accordingly.
      * The loop continues until the user types {@code bye}.
-     * All exceptions are caught and displayed in a user-friendly format.
+     * All exceptions are caught and displayed in a user-friendly format. </p>
      */
     public void run() {
         //starting code

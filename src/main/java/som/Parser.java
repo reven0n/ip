@@ -14,18 +14,24 @@ import som.task.Deadline;
 import som.task.Event;
 import som.task.Todo;
 
+/**
+ * Parses user input into executable Command objects.
+ * <p>This class analyzes the input string and returns the appropriate
+ * Command subclass based on the command verb. It validates input format
+ * and throws SomException for invalid commands.</p>
+ *
+ * @author Darien Tan
+ */
 public class Parser {
     /**
-     * Checks if input is a task-adding command.
+     * Parses a full user command into a Command object.
+     * <p>Identifies the command type and returns the corresponding Command
+     * instance. Throws SomException if the command is invalid.</p>
      *
-     * @param input the original user input
-     * @return true if input is a valid task, else returns false
+     * @param fullCommand the original user input, must not be null.
+     * @return the parsed Command object ready for execution.
+     * @throws SomException if the command is invalid, incomplete or malformed.
      */
-    public static boolean isTaskCommand(String input) {
-        String cmd = input.trim().split(" ", 2)[0].toLowerCase();
-        return cmd.equals("todo") || cmd.equals("deadline") || cmd.equals("event");
-    }
-
     public static Command parse(String fullCommand) throws SomException {
         String[] parts = fullCommand.trim().split(" ", 2);
         if (parts[0].isEmpty()) {
@@ -111,14 +117,19 @@ public class Parser {
         default: {
             throw new SomException("I don't know what '" + fullCommand + "' means. Type 'help' to see what I can do.");
         }
-
-
-
-
         }
 
     }
 
+    /**
+     * Extracts the task index from a command string.
+     * <p>Parses the number following the command verb and returns it. Throws
+     * SomException if the index is missing or not a valid number. </p>
+     *
+     * @param input the full user input containing the index.
+     * @return the 1-based task index as an integer.
+     * @throws SomException if index is missing or not a valid number.
+     */
     public static int parseIndex(String input) throws SomException {
         String[] parts = input.split(" ", 2);
         if (parts.length < 2 ) {

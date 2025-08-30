@@ -41,5 +41,4 @@ public class DeleteCommand extends Command {
     public boolean isExit() {
         return false;
     }
-
 }

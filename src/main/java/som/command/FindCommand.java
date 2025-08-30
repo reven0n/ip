@@ -11,6 +11,10 @@ public class FindCommand extends Command {
         this.dateStr = dateStr;
     }
 
+    public String getDateStr() {
+        return this.dateStr;
+    }
+
     @Override
     public void execute(TaskList tasks, Ui ui) throws SomException {
         ui.showTasksOnDate(tasks.findTasks(dateStr), java.time.LocalDate.parse(dateStr));

@@ -45,6 +45,15 @@ public class Event extends Task{
     }
 
     /**
+     * Returns the end date and time of the Event
+     *
+     * @return the LocalDateTime representing when the event ends
+     */
+    public LocalDateTime getTo() {
+        return this.to;
+    }
+
+    /**
      * Encodes a task into a line like: E | 1 | read book | 10am | 10pm
      *
      * @return Encodes a task into a line like: E | 1 | read book | 10am | 10pm

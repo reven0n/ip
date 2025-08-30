@@ -19,6 +19,11 @@ public class AddCommand extends Command {
         ui.showAdd(task, tasks.size());
         Storage.save(tasks.getAllTasks());
     }
+
+    public Task getTask() {
+        return this.task;
+    }
+
     @Override
     public boolean isExit() {
         return false;

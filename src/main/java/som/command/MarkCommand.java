@@ -12,6 +12,10 @@ public class MarkCommand extends Command {
         this.index = index;
     }
 
+    public int getIndex() {
+        return this.index;
+    }
+
     @Override
     public void execute(TaskList tasks, Ui ui) throws SomException {
         tasks.mark(index);

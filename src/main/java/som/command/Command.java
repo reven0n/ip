@@ -3,6 +3,7 @@ package som.command;
 import som.SomException;
 import som.TaskList;
 import som.Ui;
+import som.task.Task;
 
 public abstract class Command {
 

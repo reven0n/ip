@@ -1,6 +1,11 @@
 package som;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import som.command.AddCommand;
 import som.command.Command;
 import som.command.DeleteCommand;
@@ -13,10 +18,6 @@ import som.task.Deadline;
 import som.task.Event;
 import som.task.Task;
 import som.task.Todo;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParserTest {
 

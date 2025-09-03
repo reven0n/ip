@@ -1,9 +1,9 @@
 package som;
 
-import som.task.Task;
-
-import java.util.Scanner;
 import java.util.List;
+import java.util.Scanner;
+
+import som.task.Task;
 
 /**
  * Handles all user interactions with the Som chatbot.
@@ -131,7 +131,7 @@ public class Ui {
             System.out.println(" Oops! Your task list is empty!");
         } else {
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println(i+1 + ". " + tasks.get(i).toString());
+                System.out.println(i + 1 + ". " + tasks.get(i).toString());
             }
         }
         showLine();
@@ -144,7 +144,7 @@ public class Ui {
      */
     public void showMarked(Task task) {
         showLine();
-        System.out.println( " Nice! I've marked this task as done:\n"+ task.toString());
+        System.out.println(" Nice! I've marked this task as done:\n" + task.toString());
         showLine();
     }
 

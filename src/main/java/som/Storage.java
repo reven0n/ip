@@ -1,21 +1,20 @@
 package som;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import som.task.Deadline;
 import som.task.Event;
 import som.task.Task;
 import som.task.Todo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Manages persistent storage of tasks to and from a file on disk.
@@ -80,41 +79,44 @@ public class Storage {
         boolean isDone = "1".equals(parts[1].trim());
 
         return switch (type) {
-            case "T":
-                if (parts.length < 3 || parts[2].isEmpty()) {
-                    throw new IllegalArgumentException("Missing Description");
-                }
-                Task t = new Todo(parts[2]);
-                if (isDone) {
-                    t.markAsDone();
-                }
-                yield t;
-            case "D":
-                if (parts.length < 4 || parts[2].isEmpty()) {
-                    throw new IllegalArgumentException("Missing Description");
-                }
-                if (parts.length < 4 || parts[3].isEmpty()) {
-                    throw new IllegalArgumentException("Missing /by");
-                }
-                Task d = new Deadline(parts[2], parts[3]);
-                if (isDone) {
-                    d.markAsDone();
-                }
-                yield d;
-            case "E":
-                if (parts.length < 5 || parts[2].isEmpty())
-                    throw new IllegalArgumentException("Missing description");
-                if (parts.length < 5 || parts[3].isEmpty())
-                    throw new IllegalArgumentException("Missing /from");
-                if (parts.length < 5 || parts[4].isEmpty())
-                    throw new IllegalArgumentException("Missing /to");
-                Event e = new Event(parts[2], parts[3], parts[4]);
-                if (isDone) {
-                    e.markAsDone();
-                }
-                yield e;
-            default:
-                throw new IllegalArgumentException("Unknown task type");
+        case "T":
+            if (parts.length < 3 || parts[2].isEmpty()) {
+                throw new IllegalArgumentException("Missing Description");
+            }
+            Task t = new Todo(parts[2]);
+            if (isDone) {
+                t.markAsDone();
+            }
+            yield t;
+        case "D":
+            if (parts.length < 4 || parts[2].isEmpty()) {
+                throw new IllegalArgumentException("Missing Description");
+            }
+            if (parts.length < 4 || parts[3].isEmpty()) {
+                throw new IllegalArgumentException("Missing /by");
+            }
+            Task d = new Deadline(parts[2], parts[3]);
+            if (isDone) {
+                d.markAsDone();
+            }
+            yield d;
+        case "E":
+            if (parts.length < 5 || parts[2].isEmpty()) {
+                throw new IllegalArgumentException("Missing description");
+            }
+            if (parts.length < 5 || parts[3].isEmpty()) {
+                throw new IllegalArgumentException("Missing /from");
+            }
+            if (parts.length < 5 || parts[4].isEmpty()) {
+                throw new IllegalArgumentException("Missing /to");
+            }
+            Event e = new Event(parts[2], parts[3], parts[4]);
+            if (isDone) {
+                e.markAsDone();
+            }
+            yield e;
+        default:
+            throw new IllegalArgumentException("Unknown task type");
         };
     }
 

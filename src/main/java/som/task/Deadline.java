@@ -1,10 +1,10 @@
 package som.task;
 
-import som.SomException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import som.SomException;
 
 /**
  * Represents a deadline task with a due date/time.
@@ -14,10 +14,9 @@ import java.time.format.DateTimeParseException;
  * @author Darien Tan
  */
 public class Deadline extends Task {
-    private LocalDateTime by;
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy h:mma");
-
+    private LocalDateTime by;
     /**
      * Constructs a new Deadline task.
      *
@@ -49,7 +48,7 @@ public class Deadline extends Task {
      */
     @Override
     public String encode() {
-        return("D | " + (this.isDone ? "1" : "0") + " | " + this.description + " | " + this.by.format(INPUT_FORMAT));
+        return ("D | " + (this.isDone ? "1" : "0") + " | " + this.description + " | " + this.by.format(INPUT_FORMAT));
     }
 
     /**

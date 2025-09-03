@@ -12,10 +12,6 @@ public class Som {
     private Ui ui;
     private TaskList tasks;
 
-    public static void main(String[] args) {
-        new Som().run();
-    }
-
     /**
      * Creates a new Som Chatbot instance.
      */
@@ -54,5 +50,9 @@ public class Som {
                 ui.showError("Something went wrong: " + e.getMessage());
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Som().run();
     }
 }

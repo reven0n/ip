@@ -25,7 +25,7 @@ public class Todo extends Task {
      * @return the formatted representation of the task to be saved.
      */
     public String encode() {
-        return("T | " + (this.isDone ? "1" : "0") + " | " + this.description);
+        return ("T | " + (this.isDone ? "1" : "0") + " | " + this.description);
     }
 
     /**

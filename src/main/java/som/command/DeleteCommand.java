@@ -8,7 +8,7 @@ import som.task.Task;
 
 /**
  * Represents a command to delete a task from the task list.
- <p>When executed, this command adds the specified task and confirms the deletion
+ * <p>When executed, this command adds the specified task and confirms the deletion
  * through the user interface. It also triggers an automatic save of the updated list.</p>
  *
  * @author Darien Tan

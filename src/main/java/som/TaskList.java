@@ -1,15 +1,9 @@
 package som;
 
-import som.task.Deadline;
-import som.task.Event;
-import som.task.Task;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import som.task.Task;
 
 /**
  * Manages the collection of tasks in the chatbot.

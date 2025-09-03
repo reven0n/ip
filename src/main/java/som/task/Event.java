@@ -1,10 +1,10 @@
 package som.task;
 
-import som.SomException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import som.SomException;
 
 /**
  * Represents an event task with start and end times.
@@ -14,11 +14,12 @@ import java.time.format.DateTimeParseException;
  *
  * @author Darien Tan
  */
-public class Event extends Task{
-    private LocalDateTime from;
-    private LocalDateTime to;
+public class Event extends Task {
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy h:mma");
+    private LocalDateTime from;
+    private LocalDateTime to;
+
 
     /**
      * Constructs a new Event task.
@@ -65,7 +66,7 @@ public class Event extends Task{
      */
     @Override
     public String encode() {
-        return("E | " + (this.isDone ? "1" : "0") + " | " + this.description
+        return ("E | " + (this.isDone ? "1" : "0") + " | " + this.description
                 + " | " + this.from.format(INPUT_FORMAT) + " | " + this.to.format(INPUT_FORMAT));
     }
 
@@ -75,7 +76,7 @@ public class Event extends Task{
      * @return formatted task string.
      */
     @Override
-    public String toString(){
+    public String toString() {
         return " [E] " + super.toString() + " (from: "
                 + this.from.format(OUTPUT_FORMAT) + " to: " + this.to.format(OUTPUT_FORMAT) + ")";
     }

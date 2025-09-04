@@ -24,9 +24,10 @@ public abstract class Command {
      *
      * @param tasks the task list on which the command operates.
      * @param ui the user interface used to display results or errors.
+     * @return string representing the operation.
      * @throws SomException if the command fails due to invalid input or state.
      */
-    public abstract void execute(TaskList tasks, Ui ui) throws SomException;
+    public abstract String execute(TaskList tasks, Ui ui) throws SomException;
 
     /**
      * Indicates whether this command should cause the application to exit.

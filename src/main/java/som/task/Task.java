@@ -33,7 +33,7 @@ public abstract class Task {
      * @return "X" if the task is done, " " if the task is not done.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : "  "); // mark done task with X
     }
 
     /**

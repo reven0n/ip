@@ -31,10 +31,10 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws SomException {
+    public String execute(TaskList tasks, Ui ui) throws SomException {
         Task removed = tasks.remove(index);
-        ui.showDelete(removed, tasks.size());
         Storage.save(tasks.getAllTasks());
+        return ui.showDelete(removed, tasks.size());
     }
 
     @Override

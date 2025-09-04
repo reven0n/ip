@@ -28,8 +28,8 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws SomException {
-        ui.showFindResults(tasks.findTasks(keyword), keyword);
+    public String execute(TaskList tasks, Ui ui) throws SomException {
+        return ui.showFindResults(tasks.findTasks(keyword), keyword);
     }
 
     @Override

@@ -27,10 +27,10 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws SomException {
+    public String execute(TaskList tasks, Ui ui) throws SomException {
         tasks.add(task);
-        ui.showAdd(task, tasks.size());
         Storage.save(tasks.getAllTasks());
+        return ui.showAdd(task, tasks.size());
     }
 
     public Task getTask() {

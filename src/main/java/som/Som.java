@@ -52,7 +52,18 @@ public class Som {
         }
     }
 
-    public static void main(String[] args) {
-        new Som().run();
+    public String getResponse(String fullCommand) {
+        try {
+            Command c = Parser.parse(fullCommand);
+            return c.execute(tasks, ui);
+        } catch (SomException e) {
+            return ui.showError(e.getMessage());
+        } catch (Exception e) {
+            return ui.showError("Something went wrong: " + e.getMessage());
+        }
     }
+
+    // public static void main(String[] args) {
+    //     new Som().run();
+    // }
 }

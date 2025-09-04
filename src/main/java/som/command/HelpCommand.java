@@ -14,8 +14,8 @@ import som.Ui;
 public class HelpCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws SomException {
-        ui.showHelp();
+    public String execute(TaskList tasks, Ui ui) throws SomException {
+        return ui.showHelp();
     }
 
     @Override

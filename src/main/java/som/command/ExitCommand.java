@@ -13,8 +13,8 @@ import som.Ui;
 public class ExitCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws SomException {
-        ui.showGoodbye();
+    public String execute(TaskList tasks, Ui ui) throws SomException {
+        return ui.showGoodbye();
     }
 
     @Override

@@ -13,8 +13,8 @@ import som.Ui;
 public class ListCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws SomException {
-        ui.showList(tasks.getAllTasks());
+    public String execute(TaskList tasks, Ui ui) throws SomException {
+        return ui.showList(tasks.getAllTasks());
     }
 
     @Override

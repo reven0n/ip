@@ -29,10 +29,10 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws SomException {
+    public String execute(TaskList tasks, Ui ui) throws SomException {
         tasks.mark(index);
-        ui.showMarked(tasks.get(index));
         Storage.save(tasks.getAllTasks());
+        return ui.showMarked(tasks.get(index));
     }
 
     @Override

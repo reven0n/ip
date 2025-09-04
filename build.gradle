@@ -42,7 +42,7 @@ test {
 }
 
 application {
-    mainClass.set("som.Som")
+    mainClass.set("som.gui.Launcher")
 }
 
 shadowJar {

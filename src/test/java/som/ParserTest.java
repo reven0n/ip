@@ -44,11 +44,11 @@ public class ParserTest {
         AddCommand addCommand = (AddCommand) c;
         Task task = addCommand.getTask();
         assertInstanceOf(Deadline.class, task);
-        assertEquals(2025, ((Deadline) task).getby().getYear());
-        assertEquals(3, ((Deadline) task).getby().getMonthValue());
-        assertEquals(15, ((Deadline) task).getby().getDayOfMonth());
-        assertEquals(23, ((Deadline) task).getby().getHour());
-        assertEquals(59, ((Deadline) task).getby().getMinute());
+        assertEquals(2025, ((Deadline) task).getBy().getYear());
+        assertEquals(3, ((Deadline) task).getBy().getMonthValue());
+        assertEquals(15, ((Deadline) task).getBy().getDayOfMonth());
+        assertEquals(23, ((Deadline) task).getBy().getHour());
+        assertEquals(59, ((Deadline) task).getBy().getMinute());
     }
 
     @Test

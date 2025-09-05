@@ -16,7 +16,7 @@ public class UnmarkCommand extends Command {
     private int index;
 
     /**
-     * Constructs a MarkCommand with the given task index.
+     * Constructs a UnmarkCommand with the given task index.
      *
      * @param index the 0-based index of the task to mark.
      */

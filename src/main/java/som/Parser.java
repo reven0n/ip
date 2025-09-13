@@ -54,48 +54,9 @@ public class Parser {
             return new AddCommand(new Todo(fullDesc));
         }
         case "deadline": {
-            int byIndex = fullDesc.indexOf("/by ");
-            if (byIndex == -1) {
-                throw new SomException("Oops! A deadline task must include a task and '/by'. "
-                        + "Example: deadline return book " + "/by 2025-03-10 1300");
-            }
-            String desc = fullDesc.substring(0, byIndex).trim();
-            String deadline = fullDesc.substring(byIndex + 4).trim(); // +4 to skip "/by "
-            if (desc.isEmpty()) {
-                throw new SomException("Oops! The description of a deadline cannot be empty.");
-            }
-            if (deadline.isEmpty()) {
-                throw new SomException("Oops! The '/by' part cannot be empty. Please specify when it's due.");
-            }
-            return new AddCommand(new Deadline(desc, deadline));
+            return parseDeadline(fullDesc);
         } case "event": {
-            int fromIndex = fullDesc.indexOf("/from ");
-            int toIndex = fullDesc.indexOf("/to ");
-            if (fromIndex == -1) {
-                throw new SomException("Oops! An event must include '/from' to specify start time \n "
-                        + "and '/to' to specify end time "
-                        + "\nExample: event birthday /from 2025-03-11 0000 /to 2025-03-11 2359");
-            }
-            if (toIndex == -1) {
-                throw new SomException("Oops! An event must include '/to' to specify end time.");
-            }
-            if (fromIndex >= toIndex) {
-                throw new SomException("Oops! '/from' must come before '/to' in the input.");
-            }
-
-            String from = fullDesc.substring(fromIndex + 6, toIndex).trim(); // +6 to skip "/from "
-            String to = fullDesc.substring(toIndex + 4).trim(); // +6 to skip "/to "
-            String desc = fullDesc.substring(0, fromIndex).trim();
-            if (desc.isEmpty()) {
-                throw new SomException("Oops! The description of an event cannot be empty.");
-            }
-            if (from.isEmpty()) {
-                throw new SomException("Oops! The '/from' part cannot be empty. Please specify a start time.");
-            }
-            if (to.isEmpty()) {
-                throw new SomException("Oops! The '/to' part cannot be empty. Please specify an end time.");
-            }
-            return new AddCommand(new Event(desc, from, to));
+            return parseEvent(fullDesc);
         }
         case "mark": {
             int index = parseIndex(fullCommand) - 1;
@@ -120,6 +81,65 @@ public class Parser {
         }
         }
 
+    }
+
+    /**
+     * Handles the parsing of addition of Deadlines events
+     * @param fullDesc the full description of the Deadline
+     * @return an AddCommand adding a Deadline
+     * @throws SomException
+     */
+    private static Command parseDeadline(String fullDesc) throws SomException {
+        int byIndex = fullDesc.indexOf("/by ");
+        if (byIndex == -1) {
+            throw new SomException("Oops! A deadline task must include a task and '/by'. "
+                    + "Example: deadline return book " + "/by 2025-03-10 1300");
+        }
+        String desc = fullDesc.substring(0, byIndex).trim();
+        String deadline = fullDesc.substring(byIndex + 4).trim(); // +4 to skip "/by "
+        if (desc.isEmpty()) {
+            throw new SomException("Oops! The description of a deadline cannot be empty.");
+        }
+        if (deadline.isEmpty()) {
+            throw new SomException("Oops! The '/by' part cannot be empty. Please specify when it's due.");
+        }
+        return new AddCommand(new Deadline(desc, deadline));
+    }
+
+    /**
+     * Handles the parsing of addition of Events
+     * @param fullDesc the full description of the Event
+     * @return an AddCommand adding an Event
+     * @throws SomException
+     */
+    private static Command parseEvent(String fullDesc) throws SomException {
+        int fromIndex = fullDesc.indexOf("/from ");
+        int toIndex = fullDesc.indexOf("/to ");
+        if (fromIndex == -1) {
+            throw new SomException("Oops! An event must include '/from' to specify start time \n "
+                    + "and '/to' to specify end time "
+                    + "\nExample: event birthday /from 2025-03-11 0000 /to 2025-03-11 2359");
+        }
+        if (toIndex == -1) {
+            throw new SomException("Oops! An event must include '/to' to specify end time.");
+        }
+        if (fromIndex >= toIndex) {
+            throw new SomException("Oops! '/from' must come before '/to' in the input.");
+        }
+
+        String from = fullDesc.substring(fromIndex + 6, toIndex).trim(); // +6 to skip "/from "
+        String to = fullDesc.substring(toIndex + 4).trim(); // +6 to skip "/to "
+        String desc = fullDesc.substring(0, fromIndex).trim();
+        if (desc.isEmpty()) {
+            throw new SomException("Oops! The description of an event cannot be empty.");
+        }
+        if (from.isEmpty()) {
+            throw new SomException("Oops! The '/from' part cannot be empty. Please specify a start time.");
+        }
+        if (to.isEmpty()) {
+            throw new SomException("Oops! The '/to' part cannot be empty. Please specify an end time.");
+        }
+        return new AddCommand(new Event(desc, from, to));
     }
 
     /**

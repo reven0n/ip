@@ -15,7 +15,6 @@ import som.task.Event;
 import som.task.Task;
 import som.task.Todo;
 
-
 /**
  * Manages persistent storage of tasks to and from a file on disk.
  * <p>This class handles saving the current task list to a file and loading it back
@@ -80,44 +79,73 @@ public class Storage {
 
         return switch (type) {
         case "T":
-            if (parts.length < 3 || parts[2].isEmpty()) {
-                throw new IllegalArgumentException("Missing Description");
-            }
-            Task t = new Todo(parts[2]);
-            if (isDone) {
-                t.markAsDone();
-            }
-            yield t;
+            yield parseTodo(parts, isDone);
         case "D":
-            if (parts.length < 4 || parts[2].isEmpty()) {
-                throw new IllegalArgumentException("Missing Description");
-            }
-            if (parts.length < 4 || parts[3].isEmpty()) {
-                throw new IllegalArgumentException("Missing /by");
-            }
-            Task d = new Deadline(parts[2], parts[3]);
-            if (isDone) {
-                d.markAsDone();
-            }
-            yield d;
+            yield parseDeadline(parts, isDone);
         case "E":
-            if (parts.length < 5 || parts[2].isEmpty()) {
-                throw new IllegalArgumentException("Missing description");
-            }
-            if (parts.length < 5 || parts[3].isEmpty()) {
-                throw new IllegalArgumentException("Missing /from");
-            }
-            if (parts.length < 5 || parts[4].isEmpty()) {
-                throw new IllegalArgumentException("Missing /to");
-            }
-            Event e = new Event(parts[2], parts[3], parts[4]);
-            if (isDone) {
-                e.markAsDone();
-            }
-            yield e;
+            yield parseEvent(parts, isDone);
         default:
             throw new IllegalArgumentException("Unknown task type");
         };
+    }
+
+    /**
+     * Parses a Todo Task
+     * @param parts the full input from the task file
+     * @param isDone marks if the task is done
+     * @return a task representing Todo
+     */
+    private static Task parseTodo(String[] parts, boolean isDone) {
+        if (parts.length < 3 || parts[2].isEmpty()) {
+            throw new IllegalArgumentException("Missing Description");
+        }
+        Task t = new Todo(parts[2]);
+        if (isDone) {
+            t.markAsDone();
+        }
+        return t;
+    }
+    /**
+     * Parses a Deadline Task
+     * @param parts the full input from the task file
+     * @param isDone marks if the task is done
+     * @return a task representing Deadline
+     */
+    private static Task parseDeadline(String[] parts, boolean isDone) throws SomException {
+        if (parts.length < 4 || parts[2].isEmpty()) {
+            throw new IllegalArgumentException("Missing Description");
+        }
+        if (parts.length < 4 || parts[3].isEmpty()) {
+            throw new IllegalArgumentException("Missing /by");
+        }
+        Task d = new Deadline(parts[2], parts[3]);
+        if (isDone) {
+            d.markAsDone();
+        }
+        return d;
+    }
+
+    /**
+     * Parses an Event Task
+     * @param parts the full input from the task file
+     * @param isDone marks if the task is done
+     * @return a task representing Event
+     */
+    private static Task parseEvent(String[] parts, boolean isDone) throws SomException {
+        if (parts.length < 5 || parts[2].isEmpty()) {
+            throw new IllegalArgumentException("Missing description");
+        }
+        if (parts.length < 5 || parts[3].isEmpty()) {
+            throw new IllegalArgumentException("Missing /from");
+        }
+        if (parts.length < 5 || parts[4].isEmpty()) {
+            throw new IllegalArgumentException("Missing /to");
+        }
+        Event e = new Event(parts[2], parts[3], parts[4]);
+        if (isDone) {
+            e.markAsDone();
+        }
+        return e;
     }
 
     /**

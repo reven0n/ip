@@ -28,30 +28,12 @@ public class Som {
     }
 
     /**
-     * Starts the main interaction loop of the chatbot.
-     * <p>Reads user input line by line, processes commands, and responds accordingly.
-     * The loop continues until the user types {@code bye}.
-     * All exceptions are caught and displayed in a user-friendly format. </p>
+     * The main logic of the chatbot.
+     * <p>Parses the user's input before to create a command before
+     * executing the command</p>
+     * @param fullCommand the user's command
+     * @return a string showing the status of the command
      */
-    public void run() {
-        //starting code
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui);
-                isExit = c.isExit();
-            } catch (SomException e) {
-                ui.showError(e.getMessage());
-            } catch (Exception e) {
-                ui.showError("Something went wrong: " + e.getMessage());
-            }
-        }
-    }
-
     public String getResponse(String fullCommand) {
         assert fullCommand != null : "fullCommand should not be null";
         try {
@@ -63,8 +45,4 @@ public class Som {
             return ui.showError("Something went wrong: " + e.getMessage());
         }
     }
-
-    // public static void main(String[] args) {
-    //     new Som().run();
-    // }
 }

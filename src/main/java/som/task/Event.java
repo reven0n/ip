@@ -20,7 +20,6 @@ public class Event extends Task {
     private LocalDateTime from;
     private LocalDateTime to;
 
-
     /**
      * Constructs a new Event task.
      *

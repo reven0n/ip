@@ -35,23 +35,6 @@ public class Ui {
     }
 
     /**
-     * Prints a decorative line separator to improve readability.
-     */
-    public void showLine() {
-        System.out.println("____________________________________________________________");
-    }
-
-    /**
-     * Reads a command from the user input.
-     *
-     * @return the trimmed user input, or empty string if input is blank.
-     */
-    public String readCommand() {
-        assert sc != null && sc.hasNext() : "Scanner should be initialized and have input";
-        return sc.nextLine().trim();
-    }
-
-    /**
      * Displays an error message in a formatted way.
      *
      * @param exception the error message to display.
@@ -82,14 +65,13 @@ public class Ui {
     public String showFindResults(List<Task> matches, String keyword) {
         if (matches.isEmpty()) {
             return " No tasks found matching '" + keyword + "'";
-        } else {
-            String items = "";
-            items = items.concat(" Here are the matching tasks in your list:");
-            for (int i = 0; i < matches.size(); i++) {
-                items = items.concat(" " + (i + 1) + "." + matches.get(i).toString() + "\n");
-            }
-            return items;
         }
+        String items = "";
+        items = items.concat(" Here are the matching tasks in your list:\n");
+        for (int i = 0; i < matches.size(); i++) {
+            items = items.concat(" " + (i + 1) + "." + matches.get(i).toString() + "\n");
+        }
+        return items;
     }
 
     /**
@@ -133,13 +115,12 @@ public class Ui {
     public String showList(List<Task> tasks) {
         if (tasks.isEmpty()) {
             return " Oops! Your task list is empty!";
-        } else {
-            String items = "";
-            for (int i = 0; i < tasks.size(); i++) {
-                items = items.concat(i + 1 + ". " + tasks.get(i).toString() + "\n ");
-            }
-            return items;
         }
+        String items = "";
+        for (int i = 0; i < tasks.size(); i++) {
+            items = items.concat(i + 1 + ". " + tasks.get(i).toString() + "\n ");
+        }
+        return items;
     }
 
     /**

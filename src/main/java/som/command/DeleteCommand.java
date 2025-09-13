@@ -14,7 +14,6 @@ import som.task.Task;
  * @author Darien Tan
  */
 public class DeleteCommand extends Command {
-
     private int index;
 
     /**

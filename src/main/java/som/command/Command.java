@@ -14,7 +14,6 @@ import som.Ui;
  * @author Darien Tan
  */
 public abstract class Command {
-
     /**
      * Executes the command using the given TaskList and Ui.
      * <p>This method carries out the command's intended behavior, such as

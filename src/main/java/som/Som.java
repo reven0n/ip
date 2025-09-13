@@ -52,6 +52,13 @@ public class Som {
         }
     }
 
+    /**
+     * The main logic of the chatbot.
+     * <p>Parses the user's input before to create a command before
+     * executing the command</p>
+     * @param fullCommand the user's command
+     * @return a string showing the status of the command
+     */
     public String getResponse(String fullCommand) {
         try {
             Command c = Parser.parse(fullCommand);
@@ -62,8 +69,4 @@ public class Som {
             return ui.showError("Something went wrong: " + e.getMessage());
         }
     }
-
-    // public static void main(String[] args) {
-    //     new Som().run();
-    // }
 }

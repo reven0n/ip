@@ -81,14 +81,13 @@ public class Ui {
     public String showFindResults(List<Task> matches, String keyword) {
         if (matches.isEmpty()) {
             return " No tasks found matching '" + keyword + "'";
-        } else {
-            String items = "";
-            items = items.concat(" Here are the matching tasks in your list:");
-            for (int i = 0; i < matches.size(); i++) {
-                items = items.concat(" " + (i + 1) + "." + matches.get(i).toString() + "\n");
-            }
-            return items;
         }
+        String items = "";
+        items = items.concat(" Here are the matching tasks in your list:\n");
+        for (int i = 0; i < matches.size(); i++) {
+            items = items.concat(" " + (i + 1) + "." + matches.get(i).toString() + "\n");
+        }
+        return items;
     }
 
     /**
@@ -132,13 +131,12 @@ public class Ui {
     public String showList(List<Task> tasks) {
         if (tasks.isEmpty()) {
             return " Oops! Your task list is empty!";
-        } else {
-            String items = "";
-            for (int i = 0; i < tasks.size(); i++) {
-                items = items.concat(i + 1 + ". " + tasks.get(i).toString() + "\n ");
-            }
-            return items;
         }
+        String items = "";
+        for (int i = 0; i < tasks.size(); i++) {
+            items = items.concat(i + 1 + ". " + tasks.get(i).toString() + "\n ");
+        }
+        return items;
     }
 
     /**

@@ -35,22 +35,6 @@ public class Ui {
     }
 
     /**
-     * Prints a decorative line separator to improve readability.
-     */
-    public void showLine() {
-        System.out.println("____________________________________________________________");
-    }
-
-    /**
-     * Reads a command from the user input.
-     *
-     * @return the trimmed user input, or empty string if input is blank.
-     */
-    public String readCommand() {
-        return sc.nextLine().trim();
-    }
-
-    /**
      * Displays an error message in a formatted way.
      *
      * @param exception the error message to display.

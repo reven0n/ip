@@ -35,6 +35,7 @@ public class Som {
      * @return a string showing the status of the command
      */
     public String getResponse(String fullCommand) {
+        assert fullCommand != null : "fullCommand should not be null";
         try {
             Command c = Parser.parse(fullCommand);
             return c.execute(tasks, ui);

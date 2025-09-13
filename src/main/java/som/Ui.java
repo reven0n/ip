@@ -47,6 +47,7 @@ public class Ui {
      * @return the trimmed user input, or empty string if input is blank.
      */
     public String readCommand() {
+        assert sc != null && sc.hasNext() : "Scanner should be initialized and have input";
         return sc.nextLine().trim();
     }
 

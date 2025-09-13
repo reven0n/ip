@@ -7,7 +7,7 @@ import som.task.Task;
 
 /**
  * Manages the collection of tasks in the chatbot.
- * <p>This class encapsulates the interal list of Task objects and provides
+ * <p>This class encapsulates the internal list of Task objects and provides
  * methods for the list. It maintains the state of the task list and
  * ensures operations are performed safely.</p>
  *
@@ -58,6 +58,8 @@ public class TaskList {
      * @throws IndexOutOfBoundsException if the index is out of range.
      */
     public Task get(int index) {
+        assert index >= 0 : "Index should not be negative";
+        assert index < tasks.size() : "Index out of bounds";
         return this.tasks.get(index);
     }
 
@@ -69,25 +71,18 @@ public class TaskList {
      * @throws SomException if the index is out of range.
      */
     public Task remove(int index) throws SomException {
-        try {
-            return this.tasks.remove(index);
-        } catch (IndexOutOfBoundsException e) {
-            throw new SomException("No tasks found with that number.");
-        }
+        assert index >= 0 && index < tasks.size() : "Invalid task index: " + index;
+        return this.tasks.remove(index);
     }
 
     /**
      * Marks the task at the specified index.
      *
      * @param index the 0-based index of the task to mark.
-     * @throws SomException if the index is out of range.
      */
-    public void mark(int index) throws SomException {
-        try {
-            tasks.get(index).markAsDone();
-        } catch (IndexOutOfBoundsException e) {
-            throw new SomException("No tasks found with that number.");
-        }
+    public void mark(int index) {
+        assert index >= 0 && index < tasks.size() : "Invalid task index: " + index;
+        tasks.get(index).markAsDone();
     }
 
     /**
@@ -97,11 +92,8 @@ public class TaskList {
      * @throws SomException if the index is out of range.
      */
     public void unmark(int index) throws SomException {
-        try {
-            tasks.get(index).markAsUndone();
-        } catch (IndexOutOfBoundsException e) {
-            throw new SomException("No tasks found with that number.");
-        }
+        assert index >= 0 && index < tasks.size() : "Invalid task index: " + index;
+        tasks.get(index).markAsUndone();
     }
 
     /**

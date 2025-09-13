@@ -1,6 +1,7 @@
 package som;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import som.task.Task;
@@ -126,5 +127,7 @@ public class TaskList {
         return matches;
     }
 
-
+    public void sortTasks() {
+        Collections.sort(tasks);
+    }
 }

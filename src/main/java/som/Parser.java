@@ -8,6 +8,7 @@ import som.command.FindCommand;
 import som.command.HelpCommand;
 import som.command.ListCommand;
 import som.command.MarkCommand;
+import som.command.SortCommand;
 import som.command.UnmarkCommand;
 import som.task.Deadline;
 import som.task.Event;
@@ -75,6 +76,9 @@ public class Parser {
                 throw new SomException("Please enter a keyword to search for.");
             }
             return new FindCommand(fullDesc);
+        }
+        case "sort": {
+            return new SortCommand();
         }
         default: {
             throw new SomException("I don't know what '" + fullCommand + "' means. Type 'help' to see what I can do.");

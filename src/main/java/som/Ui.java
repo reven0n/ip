@@ -153,6 +153,10 @@ public class Ui {
         return ("Error loading: " + showError(error) + "\nStarting with empty task list.");
     }
 
+    public String showSortedMessage() {
+        return "Tasks sorted by deadline/event time!";
+    }
+
     /**
      * Displays a formatted list of all available commands to the user.
      * <p>This method prints a help menu that explains the syntax and purpose.</p>

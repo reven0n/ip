@@ -69,6 +69,11 @@ public class Event extends Task {
                 + " | " + this.from.format(INPUT_FORMAT) + " | " + this.to.format(INPUT_FORMAT));
     }
 
+    @Override
+    protected LocalDateTime getSortTime() {
+        return this.from;
+    }
+
     /**
      * Returns string representation of the Event task.
      *

@@ -1,5 +1,7 @@
 package som.task;
 
+import java.time.LocalDateTime;
+
 /**
  * Represents a generic Task in the task list.
  * <p>This abstract class serves as the base for all specific task types, such as
@@ -9,7 +11,7 @@ package som.task;
  *
  * @author Darien Tan
  */
-public abstract class Task {
+public abstract class Task implements Comparable<Task> {
     protected String description;
     protected boolean isDone;
 
@@ -21,6 +23,10 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    protected LocalDateTime getSortTime() {
+        return null; // Default: no time → treated as latest
     }
 
     public String getDescription() {
@@ -56,6 +62,23 @@ public abstract class Task {
      * @return the formatted representation of the task to be saved.
      */
     public abstract String encode();
+
+    @Override
+    public int compareTo(Task other) {
+        LocalDateTime thisTime = this.getSortTime();
+        LocalDateTime otherTime = other.getSortTime();
+
+        if (thisTime == null && otherTime == null) {
+            return 0;
+        }
+        if (thisTime == null) {
+            return 1; // This comes after
+        }
+        if (otherTime == null) {
+            return -1; // This comes before
+        }
+        return thisTime.compareTo(otherTime);
+    }
 
     /**
      * Returns string representation of the task.

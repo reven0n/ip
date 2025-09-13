@@ -52,6 +52,11 @@ public class Deadline extends Task {
         return ("D | " + (this.isDone ? "1" : "0") + " | " + this.description + " | " + this.by.format(INPUT_FORMAT));
     }
 
+    @Override
+    protected LocalDateTime getSortTime() {
+        return this.by;
+    }
+
     /**
      * Returns string representation of the Deadline task.
      *

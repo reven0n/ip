@@ -23,6 +23,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Som – Your Task Assistant"); // Appears in OS window bar
             stage.setMinHeight(220);
             stage.setMinWidth(417);
             fxmlLoader.<MainWindow>getController().setSom(som); // inject the Som instance

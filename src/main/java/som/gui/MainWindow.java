@@ -24,21 +24,21 @@ public class MainWindow extends AnchorPane {
 
     private Som som;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser1.png"));
+    private Image somImage = new Image(this.getClass().getResourceAsStream("/images/DaSom.jpg"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Duke instance */
+    /** Injects the Som instance */
     public void setSom(Som s) {
         som = s;
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing Som's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML
@@ -47,7 +47,7 @@ public class MainWindow extends AnchorPane {
         String response = som.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getSomDialog(response, somImage)
         );
         userInput.clear();
     }

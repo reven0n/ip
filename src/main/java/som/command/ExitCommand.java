@@ -1,5 +1,6 @@
 package som.command;
 
+import javafx.application.Platform;
 import som.SomException;
 import som.TaskList;
 import som.Ui;
@@ -13,6 +14,7 @@ import som.Ui;
 public class ExitCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui) throws SomException {
+        Platform.exit(); // Shuts down JavaFX
         return ui.showGoodbye();
     }
 

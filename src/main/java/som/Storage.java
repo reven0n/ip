@@ -42,6 +42,20 @@ public class Storage {
     public static List<Task> load() throws SomException {
         List<Task> tasks = new ArrayList<>();
         File file = FILE_PATH.toFile();
+        File parentDir = file.getParentFile();
+
+        // Create directory if it doesn't exist
+        if (parentDir != null && !parentDir.exists()) {
+            if (!parentDir.mkdirs()) {
+                throw new SomException("Failed to create data directory: " + parentDir.getAbsolutePath());
+            }
+        }
+
+        // If file doesn't exist, create it
+        if (!file.exists()) {
+            Storage.createFile(file);
+            return tasks;
+        }
         try {
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {
@@ -59,6 +73,24 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Creates a new file at the specified location if it does not already exist.
+     * <p>If the file is successfully created, a confirmation message is printed
+     * to the console. If the file already exists or cannot be created due to an
+     * I/O error,a SomException is thrown.</p>
+     * @param file the File object representing the file to be created
+     * @throws SomException if the file cannot be created or an I/O error occurs
+     */
+    private static void createFile(File file) throws SomException {
+        try {
+            if (!file.createNewFile()) {
+                throw new IOException("Failed to create file");
+            }
+            System.out.println("Created new data file: " + FILE_PATH);
+        } catch (IOException e) {
+            throw new SomException("Could not create data file: " + e.getMessage());
+        }
+    }
     /**
      * Parses a single line into a Task.
      * <p>Format: TYPE | DONE | ARGS...
@@ -168,6 +200,4 @@ public class Storage {
             throw new SomException("Error saving task: " + e.getMessage());
         }
     }
-
-
 }

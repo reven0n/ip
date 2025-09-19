@@ -175,7 +175,6 @@ public class Ui {
         sb.append("delete <index>                  – Delete a task\n");
         sb.append("find <keyword>                  – Find tasks by keyword\n");
         sb.append("sort                            – Sort deadlines/events by date\n");
-        sb.append("tag <index> #tag                – Tag a task\n");
         sb.append("bye                             – Exit the app");
 
         return sb.toString().trim();

@@ -49,89 +49,16 @@ Some example commands you can try:
 
 ---
 
-## Features
-### Viewing Help: `help`
-Shows a list of all available commands and their usage.<br>
-- Format: `help`
-#### Example Output
-``` 
-Available commands:
-  todo <desc>                  – Add a todo
-  deadline <desc> /by <time>   – Add a deadline
-  event <desc> /from <start>   – Add an event /to <end>
-  list                         – Show all tasks
-  mark <index>                 – Mark task as done
-  unmark <index>               – Mark task as not done
-  delete <index>               – Delete a task
-  find <keyword>               – Find tasks by keyword
-  sort                         – Sort deadlines/events by date
-  tag <index> #tag1 #tag2      – Add tags to a task
-  bye                          – Exit the app 
-```
-### Adding a Task: `todo`, `deadline`, `event`
-Adds a new task to your list. <br>
-#### `todo`: Simple Tasks with No Deadline
-- Format: `todo <description>`<br>
-- Example: `todo read book`
-#### `deadline`: Tasks with Due Date/Time
-- Format: `deadline <description> /by <YYYY-MM-DD> <HHmm>`<br>
-- Example: `deadline submit report /by 2025-03-15 2359`
-#### `event`: Events with Start and End Time
-- Format: `event <description> /from <YYYY-MM-DD HHmm> /to <YYYY-MM-DD HHmm>`<br> 
-- Example: `event team sync /from 2025-03-16 0900 /to 2025-03-16 1000`
-### Listing All Tasks: `list`
-Displays all tasks currently in your list with their index and status.<br>
-- Format: `list`
-#### Example Output:
-``` 
-Here are the tasks in your list:
- 1.[T][ ] read book
- 2.[D][X] submit report (by: Mar 15 2025 11:59 PM)
- 3.[E][ ] team sync (at: Mar 16 2025 9:00 AM to 10:00 AM)
-```
-### Marking a Task as Done: `mark`
-Marks a task as completed.
-- Format: `mark <index>`
-- Example: `mark 1`
-#### Example Output
-```
- Nice! I've marked this task as done:
- [T][X] read book
-```
-### Marking a Task as Not Done: `unmark`
-Marks a task as not complete.
-- Format: `unmark <index>`
-- Example: `unmark 1`
-#### Example Output
-```
- OK, I've marked this task as not done yet:
- [T][X] read book
-```
-### Deleting a Task: `delete`
-Removes a task from the list.
-- Format: `delete <index>`
-- Example: `delete 2`
-### Example Output
-```
-Noted. I've removed this task:
-  [D][X] submit report (by: Mar 15 2025 11:59 PM)
- Now you have 2 tasks in the list
-```
-### Finding Tasks: `find`
-Searches for tasks whose description contains the given keyword(s).
-- Format: `find <keyword>`
-- Example: `find book`
-#### Example Output
-```
-Here are the matching tasks in your list:
-  1.[T][ ] read book
-```
-### Sorting Tasks: `sort`
-Sorts deadlines and events chronologically by date/time. Todos appear at the end.
-- Format: `sort`
-#### Example Output After Sorting
-```
-1.[E][ ] team sync (at: Mar 16 2025 9:00 AM to 10:00 AM)
-2.[D][X] submit report (by: Mar 15 2025 11:59 PM)
-3.[T][ ] read book
-```
+| Command    | Description | Example Usage                                             |
+|------------|------------|-----------------------------------------------------------|
+| `list`     | Show all current tasks | `list`                                                    |
+| `todo`     | Add a todo task | `todo read book`                                          |
+| `deadline` | Add a deadline task | `deadline return book /by 2025-09-20 1300`                |
+| `event`    | Add an event task | `event meeting /from 2025-09-20 1300 /to 2025-09-20 2100` |
+| `mark`     | Mark a task as completed | `mark 2`                                                  |
+| `unmark`   | Unmark a completed task | `unmark 2`                                                |
+| `delete`   | Delete a task | `delete 3`                                                |
+| `find`     | Find tasks matching a keyword | `find report`                                             |
+| `help`     | Show help message | `help`                                                    |
+| `sort`     | Sorts deadlines and events by date | `sort`                                                    |
+| `bye`      | Exit the program | `bye`                                                     |

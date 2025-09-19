@@ -32,11 +32,15 @@ public class Event extends Task {
         try {
             this.from = LocalDateTime.parse(strFrom, INPUT_FORMAT);
             this.to = LocalDateTime.parse(strTo, INPUT_FORMAT);
+            // Check if the deadline is before or equal to now
+            if (this.to.isBefore(LocalDateTime.now()) || this.to.isEqual(LocalDateTime.now())) {
+                throw new SomException("Event end date and time must be after the current time.");
+            }
         } catch (DateTimeParseException e) {
             throw new SomException("Invalid date format! Use: yyyy-MM-dd HHmm (e.g., 2019-12-02 1800)");
         }
         if (from.isAfter(to)) {
-            throw new SomException("Start time cannot be after end time.");
+            throw new SomException("Start date and time cannot be after end date and time.");
         }
     }
 

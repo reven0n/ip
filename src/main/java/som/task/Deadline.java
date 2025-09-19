@@ -28,6 +28,10 @@ public class Deadline extends Task {
         super(description);
         try {
             this.by = LocalDateTime.parse(strBy, INPUT_FORMAT);
+            // Check if the deadline is before or equal to now
+            if (this.by.isBefore(LocalDateTime.now()) || this.by.isEqual(LocalDateTime.now())) {
+                throw new SomException("Deadline must be after the current time.");
+            }
         } catch (DateTimeParseException e) {
             throw new SomException("Invalid date format! Use: yyyy-MM-dd HHmm (e.g., 2019-12-02 1800)");
         }

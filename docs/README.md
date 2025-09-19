@@ -5,7 +5,7 @@
 
 **Som** is a lightweight, CLI-based task manager that helps you organize your tasks without distractions. Built with clean OOP design and Gradle automation, it’s fast, reliable, and easy to use.
 
-![GUI Preview](docs/Ui.png)
+![GUI Preview](Ui.png)
 
 ---
 
